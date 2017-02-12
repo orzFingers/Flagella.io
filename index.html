@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+body {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 12px;
+	letter-spacing: -1px;
+	color: white;
+    text-shadow: -1px 0 #3d3d3d, 0 1px #3d3d3d, 1px 0 #3d3d3d, 0 -1px #3d3d3d;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+	
+	/* hide white bars */
+	margin: 0;
+	padding: 0;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+	
+	border-radius: 50px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
+
+h2, button {
+
+	text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer { /*this section aligns the image to the center */
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+	
+}
+
+img.avatar {
+    width: 50%;
+    border-radius: 50%;
+	
+}
+
+
+.container {
+    padding: 16px;
+	text-align:center;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	display: block;
+	margin: 0 auto; /* Center align */
+    width: 300px;
+	border-radius: 5px;
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s;
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+
+
+
+#fps{
+	text-size: 15px;
+	color: yellow;
+	top: 0;
+	left: 0;
+}
+
+.statsTable {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}
+.scoreTitle {
+	font-size: 22px;
+	text-align: center;
+	text-shadow: none;
+	-w
+	ebkit-text-stroke: 1.3px #3d3d3d;
+}
+.scoreTable {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.meter { 
+	height: 12px; 
+	width: 200px;
+	position: relative;
+	background: #3d3d3d;
+	border-radius: 9px;
+	padding: 3px;
+	margin: 3px;
+	opacity: 0.96;
+}
+.meterBar {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 5px;
+  background-color: rgb(108,240,163);
+  position: relative;
+  overflow: hidden;
+}
+.meterSeparator { /* Separate stat increments */
+	height: 100%;
+	width: 3px;
+	position: absolute;
+	top: 0;
+	left: 20px;
+	background-color: #3d3d3d;
+	display: inline-block;
+}
+.meterButton {
+	display: block;
+	height: 100%;
+	width: 15%;
+	border-radius: 0px 5px 5px 0px;
+	background-color: rgb(108,240,163);
+	position: relative;
+	overflow: hidden;
+	float: right;
+	background-color: #6690ea;
+	z-index: 4;
+	/*transition: all 0.2s ease;*/
+}
+.meterButton:hover {
+	opacity: 0.7;
+}
+.meterButton:active {
+	transform: scale(0.9);
+}
+.meterText {
+  position: absolute;
+  width: 100%; /* so text can be aligned relative to parent */
+  top: 0px;
+  text-align:center;
+  z-index: 1;
+}
+.cross {
+  background: #3d3d3d;
+  height: 10px;
+  position: absolute;
+  margin-left: 13px;
+  top: 1px;
+  width: 3px;
+  z-index: 2;
+  vertical-align: middle;
+}
+.cross:after {
+  background: #3d3d3d;
+  content: "";
+  height: 3px;
+  left: -4px;
+  position: absolute;
+  top: 4px;
+  width: 11px;
+  z-index: 2;
+}
+
+
+.label {
+	font-size: 18px;
+}
+.updateInfo {
+	position: absolute;
+	left: 40px;
+	top: 40px;
+	font-size: 12px;
+	width: 20%;
+}
+.tinyText {
+	font-size: 9px;
+	letter-spacing: 0;
+}
+
+.textInput {
+	border: 1px solid black;
+	margin-bottom: 0;
+	background-color: white;
+	text-align: center;
+	
+	/* is copying default text necessary? */
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: black;
+    text-shadow: -1px 0 #3d3d3d, 0 1px #3d3d3d, 1px 0 #3d3d3d, 0 -1px #3d3d3d;
+}
+input:focus {
+	outline: none;
+}
+
+.classSelector {
+	width: 80%;
+	display: block;
+	margin: 50px auto;
+	text-align: center;
+	left: 0;
+	font-size: 25px;
+}
+
+.classImage {
+	width: 20vh;
+	height: 20vh;
+	border-radius: 100%;
+	display: inline;
+	margin: 20px;
+}
+.spinning {
+	animation: rotate 20s linear infinite;
+	border: 4px solid rgba(0,0,0,0); /* avoid element location shifting when separate border is added */
+}
+.fastSpinning {
+	/*animation: rotate 5s linear infinite;*/
+	border-radius: 100%;
+	border: 4px solid white;
+}
+.spinningWrapper{ /* change speed by rotating another ite */
+	animation: rotate 10s linear infinite;
+	animation-play-state: paused;
+	border-radius: 100%;
+	display:inline-block;
+}
+.spinningWrapper:hover {
+	animation-play-state: running;
+}
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+
+</style>
+<div id="loginDiv">
+<div id="loginModal" class="modal" style="dislay:none;">
+  
+  <div class="updateInfo" id="updateInfo">
+	<div class="label">Changelog</div>
+	<ul>
+		<li> Now online! </li>
+		<li> Better UI </li>
+		<li> Class Icons </li>
+	</ul>
+  </div>
+  
+  <div class="classSelector" id="classSelector">
+	  <p style="margin:0">Choose Your Character!</p>
+	  <span>
+	  <div class="spinningWrapper">
+			<img id="IMG_Creature1" class="classImage spinning" src="Creature1.png" onClick="selectCharacter(this, 0)">
+		  </div>
+		  <div class="spinningWrapper">
+			<img id="IMG_Bear" class="classImage spinning" src="Bear.png" onClick="selectCharacter(this, 1)">
+		  </div>
+		  <div class="spinningWrapper">
+			<img id="IMG_Fire" class="classImage spinning" src="Fire.png" onClick="selectCharacter(this, 2)">
+		  </div>
+	  </span>
+	  
+	  
+  </div>
+ 
+ 
+  <div class="modal-content animate" >
+
+    <form autocomplete="off" action="#" onsubmit=";login();return false;" class="container">
+      <span>Rule the ring as...</span>
+      <input class="textInput" type="text" placeholder="" id="username" name="username" autofocus>
+	  <span class="tinyText">(press enter to start)</span>
+      <!--<button onclick="login();">PLAY!</button>-->
+    </form>
+  </div>
+ 
+</div>
+</div>
+
+
+
+<div id="score"></div>
+<div id="stats"></div>
+<div id="fps"></div>
+
+
+<img id="IMG_bg" width="610" height="386" src="Background.png" style="display:none; ">
+<img id="IMG_Mouth1" width="134" height="134" src="Mouth1.png" style="display:none; ">
+<img id="IMG_Food" width="42" height="42" src="Food.png" style="display:none; ">
+<img id="IMG_FoodEaten" width="10" height="12" src="FoodEaten.png" style="display:none; ">
+
+<canvas id="gameCanvas" width="100%" height="100%" tabindex='1' style="display:block; " >
+Your browser does not support the HTML5 canvas tag.</canvas>
+<script src='/socket.io/socket.io.js'></script>
+<script src="game_core.js"></script>
+<script src="client.js"></script>
+
+</body>
+</html>

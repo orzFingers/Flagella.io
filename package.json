@@ -1,0 +1,16 @@
+{
+  "name": "Punchout.io",
+  "version": "0.0.1",
+  "description": "An online multiplayer boxing game",
+  "main": "app.js",
+  "author": "Matthew Mathis",
+  "private": true,
+  "license": "BSD",
+  "dependencies": {
+    "express": "4.13.4",
+	"socket.io": "1.7.2"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
